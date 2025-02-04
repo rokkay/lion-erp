@@ -23,6 +23,9 @@ final class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            ThirdPartyTypeSeeder::class,
+            ThirdPartyEmployeeRangeSeeder::class,
+            ThirdPartyBusinessTypeSeeder::class,
             ThirdPartySeeder::class,
         ]);
     }
