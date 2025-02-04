@@ -15,6 +15,20 @@ test('email verification screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
+test('redirect user to dashboard if has email verified', function () {
+    $user = User::factory()->create();
+
+    $verificationUrl = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        ['id' => $user->id, 'hash' => sha1($user->email)]
+    );
+
+    $response = $this->actingAs($user)->get($verificationUrl);
+
+    $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+});
+
 test('email can be verified', function () {
     $user = User::factory()->unverified()->create();
 

@@ -70,7 +70,7 @@
             "phpstan analyse"
         ],
         "test:type-coverage": "pest --type-coverage --min=100",
-        "test:unit": "pest",
+        "test:unit": "XDEBUG_MODE=coverage pest --parallel --ci --coverage --min=75.0",
         "test": [
             "@test:lint",
             "@test:types",
