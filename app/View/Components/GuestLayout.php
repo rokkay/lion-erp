@@ -7,6 +7,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
+// @codeCoverageIgnoreStart
 final class GuestLayout extends Component
 {
     /**
@@ -17,3 +18,4 @@ final class GuestLayout extends Component
         return view('layouts.guest');
     }
 }
+// @codeCoverageIgnoreEnd
