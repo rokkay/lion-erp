@@ -15,11 +15,17 @@ final class ThirdParty extends Model
     /** @use HasFactory<\Database\Factories\ThirdPartyFactory> */
     use HasFactory;
 
+    /**
+     * @return BelongsTo<ThirdPartyType, $this>
+     */
     public function type(): BelongsTo
     {
         return $this->belongsTo(ThirdPartyType::class);
     }
 
+    /**
+     * @return BelongsTo<ThirdPartyEmployeeRange, $this>
+     */
     public function employeeRange(): BelongsTo
     {
         return $this->belongsTo(ThirdPartyEmployeeRange::class);
