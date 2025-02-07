@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Illuminate\Auth\Events\Lockout;
+use Illuminate\Support\Facades\Event;
 use Livewire\Volt\Volt;
 
 test('login screen can be rendered', function () {
@@ -71,4 +73,22 @@ test('users can logout', function () {
         ->assertRedirect('/');
 
     $this->assertGuest();
+});
+
+it('triggers Lockout event when rate limit is exceed', function () {
+    Event::fake();
+
+    $user = User::factory()->create();
+
+    $component = Volt::test('pages.auth.login')
+        ->set('form.email', $user->email)
+        ->set('form.password', $user->password);
+
+    for ($i = 0; $i < 5; $i++) {
+        $component->call('login');
+    }
+
+    $component->call('login');
+
+    Event::assertDispatched(Lockout::class);
 });
