@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use App\Enums\ThirdPartyStatus;
 use App\Models\ThirdParty;
+use App\Models\ThirdPartyEmployeeRange;
+use App\Models\ThirdPartyType;
 
+covers(ThirdParty::class);
 test('to array', function () {
     $this->seed();
 
@@ -71,4 +74,24 @@ test('type field can be null', function () {
     ])->fresh();
 
     expect($thirdParty->type_id)->toBeNull();
+});
+
+it('belongs to type', function () {
+    $this->seed();
+
+    $thirdParty = ThirdParty::factory()->create([
+        'type_id' => ThirdPartyType::all()->random(),
+    ])->fresh();
+
+    expect($thirdParty->type)->toBeInstanceOf(ThirdPartyType::class);
+});
+
+it('belongs to employee range', function () {
+    $this->seed();
+
+    $thirdParty = ThirdParty::factory()->create([
+        'employee_range_id' => ThirdPartyEmployeeRange::all()->random(),
+    ])->fresh();
+
+    expect($thirdParty->employeeRange)->toBeInstanceOf(ThirdPartyEmployeeRange::class);
 });
