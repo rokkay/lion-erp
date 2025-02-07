@@ -11,3 +11,7 @@ parameters:
         - bootstrap
         - database/factories
         - routes
+
+    ignoreErrors:
+        - message: '#Call to an undefined method Faker\\Generator::#'
+          identifier: method.notFound
