@@ -25,7 +25,8 @@
         "pestphp/pest": "^3.7",
         "pestphp/pest-plugin-laravel": "^3.1",
         "pestphp/pest-plugin-livewire": "^3.0",
-        "pestphp/pest-plugin-type-coverage": "^3.2"
+        "pestphp/pest-plugin-type-coverage": "^3.2",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -60,22 +61,19 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ],
-        "lint": [
-            "pint"
-        ],
-        "test:lint": [
-            "pint --test"
-        ],
-        "test:types": [
-            "phpstan"
-        ],
+        "lint": "pint",
+        "refactor": "rector",
+        "test:lint": "pint --test",
+        "test:types": "phpstan",
         "test:type-coverage": "pest --type-coverage --min=100",
         "test:unit": "XDEBUG_MODE=coverage pest --parallel --coverage --exactly=100.0",
+        "test:refactor": "rector --dry-run",
         "test": [
             "@test:lint",
             "@test:types",
             "@test:type-coverage",
-            "@test:unit"
+            "@test:unit",
+            "@test:refactor"
         ]
     },
     "extra": {

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('third_party_business_types', function (Blueprint $table) {
+        Schema::create('third_party_business_types', function (Blueprint $table): void {
             $table->id();
             $table->string('label');
             $table->boolean('is_active')->default(true);
