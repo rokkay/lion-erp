@@ -3,15 +3,14 @@
 declare(strict_types=1);
 
 use App\Livewire\ThirdParties\Index;
-
-use function Pest\Livewire\livewire;
+use Livewire\Volt\Volt;
 
 it('can render page', function () {
-    livewire(Index::class)->assertSuccessful();
+    Volt::test(Index::class)->assertSuccessful();
 });
 
 it('can render default columns', function () {
-    livewire(Index::class)
+    Volt::test(Index::class)
         ->assertCanRenderTableColumn('name')
         ->assertCanRenderTableColumn('alias')
         ->assertCanRenderTableColumn('type.label')
