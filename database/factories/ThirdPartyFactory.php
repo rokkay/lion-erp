@@ -24,7 +24,7 @@ final class ThirdPartyFactory extends Factory
     public function definition(): array
     {
         return [
-            'alias' => fake()->text(),
+            'alias' => fake()->word(),
             'name' => fake()->company(),
             'customer_type' => fake()->randomElement(ThirdPartyCustomerType::cases()),
             'status' => fake()->randomElement(ThirdPartyStatus::cases()),
