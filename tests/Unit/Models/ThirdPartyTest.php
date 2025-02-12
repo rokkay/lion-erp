@@ -9,8 +9,6 @@ use App\Models\ThirdPartyType;
 
 covers(ThirdParty::class);
 test('to array', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->create()->fresh();
 
     expect(array_keys($thirdParty->toArray()))->toBe([
@@ -43,32 +41,24 @@ test('to array', function () {
 });
 
 test('active', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->active()->create()->fresh();
 
     expect($thirdParty->status)->toBe(ThirdPartyStatus::Active);
 });
 
 test('closed', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->closed()->create()->fresh();
 
     expect($thirdParty->status)->toBe(ThirdPartyStatus::Closed);
 });
 
 test('archived', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->archived()->create()->fresh();
 
     expect($thirdParty->status)->toBe(ThirdPartyStatus::Archived);
 });
 
 test('type field can be null', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->create([
         'type_id' => null,
     ])->fresh();
@@ -77,20 +67,16 @@ test('type field can be null', function () {
 });
 
 it('belongs to type', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->create([
-        'type_id' => ThirdPartyType::all()->random(),
+        'type_id' => ThirdPartyType::factory(),
     ])->fresh();
 
     expect($thirdParty->type)->toBeInstanceOf(ThirdPartyType::class);
 });
 
 it('belongs to employee range', function () {
-    $this->seed();
-
     $thirdParty = ThirdParty::factory()->create([
-        'employee_range_id' => ThirdPartyEmployeeRange::all()->random(),
+        'employee_range_id' => ThirdPartyEmployeeRange::factory(),
     ])->fresh();
 
     expect($thirdParty->employeeRange)->toBeInstanceOf(ThirdPartyEmployeeRange::class);
