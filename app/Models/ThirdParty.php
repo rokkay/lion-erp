@@ -31,6 +31,14 @@ final class ThirdParty extends Model
         return $this->belongsTo(ThirdPartyEmployeeRange::class);
     }
 
+    /**
+     * @return BelongsTo<ThirdPartyBusinessType, $this>
+     */
+    public function business(): BelongsTo
+    {
+        return $this->belongsTo(ThirdPartyBusinessType::class);
+    }
+
     protected function casts(): array
     {
         return [
