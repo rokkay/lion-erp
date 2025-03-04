@@ -42,9 +42,9 @@ final class ThirdPartyFactory extends Factory
             'tax_id' => fake()->unique()->vat(),
             'industry_classification' => fake()->word(),
             'is_vat_subject' => fake()->boolean(),
-            'type_id' => ThirdPartyType::factory(),
-            'business_type_id' => ThirdPartyBusinessType::factory(),
-            'employee_range_id' => ThirdPartyEmployeeRange::factory(),
+            'type_id' => ThirdPartyType::all()->random(),
+            'business_type_id' => ThirdPartyBusinessType::all()->random(),
+            'employee_range_id' => ThirdPartyEmployeeRange::all()->random(),
             'logo' => fake()->imageUrl(),
         ];
     }
